@@ -1,11 +1,11 @@
 [package]
-name = "bench-parser"
+name = "bench-transformer"
 version = "0.1.0"
 edition = "2021"
 publish = false
 
 [[bench]]
-name = "parser"
+name = "transformer"
 harness = false
 
 [profile.release]
@@ -17,11 +17,15 @@ debug         = false
 panic         = "abort"
 
 [dependencies]
-oxc = "0.13.0"
-swc_ecma_parser = "0.144.1"
-swc_ecma_ast = "0.113.1"
-biome_js_parser = "0.5.7"
-biome_js_syntax = "0.5.7"
+oxc = { version = "0.13.5", features = ["transformer", "codegen"] }
+
+swc = "0.276.0"
+swc_common = "0.33.26"
+swc_ecma_ast = "0.113.7"
+swc_ecma_parser = "0.144.2"
+swc_ecma_transforms_react = "0.184.1"
+swc_ecma_transforms_typescript = "0.189.1"
+swc_ecma_visit = "0.99.1"
 
 num_cpus = "1.16.0"
 criterion2  = { version = "0.10.0", default-features = false }

@@ -19,9 +19,23 @@ The numbers indicate that Oxc is at least 3 times faster than Swc.
 
 Codspeed measures performance by cpu instructions.
 
-### Mac i7 6 cores
+### Mac mini M2 8 cores
 
-<!-- <img src="./bar-graph.svg"> -->
+### cal.com.tsx
+
+|               | oxc               | swc               |
+| ------------- | ----------------- | ----------------- |
+| no-drop       | `14.4 ms` (1.00x) | `31.5 ms` (2.20x) |
+| parallel      | `26.9 ms` (1.00x) | `69.4 ms` (2.59x) |
+| single-thread | `14.4 ms` (1.00x) | `32.3 ms` (2.25x) |
+
+### typescript.js
+
+|               | oxc                | swc                |
+| ------------- | ------------------ | ------------------ |
+| no-drop       | `106.7 ms` (1.00x) | `213.8 ms` (2.00x) |
+| parallel      | `195.8 ms` (1.00x) | `437.2 ms` (2.23x) |
+| single-thread | `106.0 ms` (1.00x) | `221.7 ms` (2.09x) |
 
 #### single-thread
 
@@ -71,20 +85,15 @@ Run the following command on your machine for replication.
 cargo bench
 ```
 
-<!-- Generate the table -->
+Generate the table
 
-<!-- ```bash -->
-<!-- cargo install cargo-criterion -->
-<!-- cargo install criterion-table -->
-<!-- cargo criterion --message-format=json | criterion-table > BENCHMARKS.md -->
-<!-- ``` -->
-
-<!-- Generate the bar graph: https://www.rapidtables.com/tools/bar-graph.html -->
+```bash
+pnpm i
+pnpm run table
+```
 
 ## Input
 
-* File: https://cdn.jsdelivr.net/npm/typescript@5.1.6/lib/typescript.js
-* File Size: 7.8M
 * Uses `mimalloc` as the global allocator
 * Uses the following release profile
 

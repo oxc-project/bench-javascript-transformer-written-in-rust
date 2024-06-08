@@ -22,7 +22,7 @@ oxc = { version = "0.13.5", features = ["transformer", "codegen"] }
 swc = "0.276.0"
 swc_common = "0.33.26"
 swc_ecma_ast = "0.113.7"
-swc_ecma_parser = "0.144.2"
+swc_ecma_parser = { version = "0.144.2", features = ["typescript"] }
 swc_ecma_transforms_react = "0.184.1"
 swc_ecma_transforms_typescript = "0.189.1"
 swc_ecma_visit = "0.99.1"
@@ -30,7 +30,7 @@ swc_ecma_visit = "0.99.1"
 num_cpus = "1.16.0"
 criterion2  = { version = "0.10.0", default-features = false }
 rayon = "1.10.0"
-mimalloc = "0.1.41"
+mimalloc = "0.1.42"
 
 [features]
 codspeed = ["criterion2/codspeed"]

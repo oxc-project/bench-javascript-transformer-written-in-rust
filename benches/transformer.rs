@@ -11,23 +11,23 @@ trait TheBencher {
 
     const ID: &'static str;
 
-    fn run(source: &str) -> Self::RunOutput;
+    fn run(path: &Path, source: &str) -> Self::RunOutput;
 
-    fn bench(g: &mut BenchmarkGroup<'_, WallTime>, source: &str) {
+    fn bench(g: &mut BenchmarkGroup<'_, WallTime>, path: &Path, source: &str) {
         let cpus = num_cpus::get_physical();
         let id = BenchmarkId::new(Self::ID, "single-thread");
-        g.bench_with_input(id, &source, |b, source| b.iter(|| Self::run(source)));
+        g.bench_with_input(id, &source, |b, source| b.iter(|| Self::run(path, source)));
 
         let id = BenchmarkId::new(Self::ID, "no-drop");
         g.bench_with_input(id, &source, |b, source| {
-            b.iter_with_large_drop(|| Self::run(source))
+            b.iter_with_large_drop(|| Self::run(path, source))
         });
 
         let id = BenchmarkId::new(Self::ID, "parallel");
         g.bench_with_input(id, &source, |b, source| {
             b.iter(|| {
                 (0..cpus).into_par_iter().for_each(|_| {
-                    Self::run(source);
+                    Self::run(path, source);
                 });
             })
         });
@@ -41,7 +41,7 @@ impl TheBencher for OxcBencher {
 
     const ID: &'static str = "oxc";
 
-    fn run(source_text: &str) -> Self::RunOutput {
+    fn run(path: &Path, source_text: &str) -> Self::RunOutput {
         use oxc::{
             allocator::Allocator,
             codegen::{Codegen, CodegenOptions},
@@ -51,7 +51,7 @@ impl TheBencher for OxcBencher {
         };
 
         let allocator = Allocator::default();
-        let source_type = SourceType::default();
+        let source_type = SourceType::from_path(path).unwrap();
         {
             let ret = Parser::new(&allocator, source_text, source_type).parse();
             let trivias = ret.trivias;
@@ -86,11 +86,11 @@ impl TheBencher for SwcBencher {
 
     const ID: &'static str = "swc";
 
-    fn run(source: &str) -> Self::RunOutput {
+    fn run(path: &Path, source: &str) -> Self::RunOutput {
         use std::sync::Arc;
         use swc::{Compiler, PrintArgs, SwcComments};
         use swc_common::{chain, source_map::SourceMap, sync::Lrc, Mark, GLOBALS};
-        use swc_ecma_parser::{Parser, StringInput, Syntax};
+        use swc_ecma_parser::{EsConfig, Parser, StringInput, Syntax, TsConfig};
         use swc_ecma_transforms_react::{react, Options};
         use swc_ecma_transforms_typescript::strip;
         use swc_ecma_visit::FoldWith;
@@ -98,10 +98,18 @@ impl TheBencher for SwcBencher {
         let cm = Lrc::new(SourceMap::new(swc_common::FilePathMapping::empty()));
         let compiler = Compiler::new(Arc::clone(&cm));
         let comments = SwcComments::default();
+        let syntax = match path.extension().unwrap().to_str().unwrap() {
+            "js" => Syntax::Es(EsConfig::default()),
+            "tsx" => Syntax::Typescript(TsConfig {
+                tsx: true,
+                ..TsConfig::default()
+            }),
+            _ => panic!("need to define syntax for swc"),
+        };
 
         GLOBALS.set(&Default::default(), || {
             let program = Parser::new(
-                Syntax::Es(Default::default()),
+                syntax,
                 StringInput::new(source, Default::default(), Default::default()),
                 Some(&comments),
             )
@@ -132,13 +140,15 @@ impl TheBencher for SwcBencher {
 }
 
 fn transformer_benchmark(c: &mut Criterion) {
-    let filename = "typescript.js";
-    let source = std::fs::read_to_string(filename).unwrap();
-
-    let mut g = c.benchmark_group(filename);
-    OxcBencher::bench(&mut g, &source);
-    SwcBencher::bench(&mut g, &source);
-    g.finish();
+    let filenames = ["typescript.js", "cal.com.tsx"];
+    for filename in filenames {
+        let path = Path::new("files").join(filename);
+        let source = std::fs::read_to_string(&path).unwrap();
+        let mut g = c.benchmark_group(filename);
+        OxcBencher::bench(&mut g, &path, &source);
+        SwcBencher::bench(&mut g, &path, &source);
+        g.finish();
+    }
 }
 
 criterion_group!(transformer, transformer_benchmark);

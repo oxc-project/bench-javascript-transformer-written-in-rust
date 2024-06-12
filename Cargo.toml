@@ -23,6 +23,7 @@ swc = "0.276.0"
 swc_common = "0.33.26"
 swc_ecma_ast = "0.113.7"
 swc_ecma_parser = { version = "0.144.2", features = ["typescript"] }
+swc_ecma_transforms = "0.230.1"
 swc_ecma_transforms_react = "0.184.1"
 swc_ecma_transforms_typescript = "0.189.1"
 swc_ecma_visit = "0.99.1"

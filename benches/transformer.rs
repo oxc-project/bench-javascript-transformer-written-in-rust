@@ -37,7 +37,7 @@ trait TheBencher {
 struct OxcBencher;
 
 impl TheBencher for OxcBencher {
-    type RunOutput = oxc::allocator::Allocator;
+    type RunOutput = (oxc::allocator::Allocator, String);
 
     const ID: &'static str = "oxc";
 
@@ -49,7 +49,7 @@ impl TheBencher for OxcBencher {
 struct SwcBencher;
 
 impl TheBencher for SwcBencher {
-    type RunOutput = swc_ecma_ast::Program;
+    type RunOutput = (swc_ecma_ast::Program, String);
 
     const ID: &'static str = "swc";
 

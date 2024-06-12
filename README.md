@@ -54,6 +54,17 @@ pnpm run table
 
 ## Maximum Resident Set Size
 
+```
+./memory.sh
+
+./files/cal.com.tsx
+oxc 41.7 mb
+swc 31.1 mb
+
+./files/typescript.js
+oxc 224.4 mb
+swc 160.1 mb
+```
 
 ## Setup
 

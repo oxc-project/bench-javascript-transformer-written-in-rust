@@ -8,13 +8,13 @@ publish = false
 name = "transformer"
 harness = false
 
-[profile.release]
-opt-level     = 3
-lto           = "fat"
-codegen-units = 1
-strip         = "symbols"
-debug         = false
-panic         = "abort"
+[[bin]]
+name = "oxc"
+path = "src/oxc.rs"
+
+[[bin]]
+name = "swc"
+path = "src/swc.rs"
 
 [dependencies]
 oxc = { version = "0.13.5", features = ["transformer", "codegen"] }
@@ -34,3 +34,12 @@ mimalloc = "0.1.42"
 
 [features]
 codspeed = ["criterion2/codspeed"]
+
+[profile.release]
+opt-level     = 3
+lto           = "fat"
+codegen-units = 1
+strip         = "symbols"
+debug         = false
+panic         = "abort"
+

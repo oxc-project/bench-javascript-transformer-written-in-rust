@@ -26,12 +26,12 @@ pub mod oxc {
                 Path::new(""),
                 source_type,
                 source_text,
-                &trivias,
+                trivias.clone(),
                 transform_options,
             )
             .build(&mut program)
             .unwrap();
-            Codegen::<false>::new("", source_text, CodegenOptions::default(), None)
+            Codegen::<false>::new("", source_text, trivias, CodegenOptions::default())
                 .build(&program)
                 .source_text
         };

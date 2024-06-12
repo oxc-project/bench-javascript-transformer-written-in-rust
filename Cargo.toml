@@ -17,7 +17,7 @@ name = "swc"
 path = "src/swc.rs"
 
 [dependencies]
-oxc = { version = "0.13.5", features = ["transformer", "codegen"] }
+oxc = { version = "0.14.0", features = ["transformer", "codegen"] }
 
 swc = "0.276.0"
 swc_common = "0.33.26"

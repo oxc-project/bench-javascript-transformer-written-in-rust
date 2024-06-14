@@ -19,14 +19,14 @@ path = "src/swc.rs"
 [dependencies]
 oxc = { version = "0.14.0", features = ["transformer", "codegen"] }
 
-swc = "0.276.0"
+swc = "0.277.0"
 swc_common = "0.33.26"
-swc_ecma_ast = "0.113.7"
-swc_ecma_parser = { version = "0.144.2", features = ["typescript"] }
-swc_ecma_transforms = "0.230.1"
-swc_ecma_transforms_react = "0.184.1"
-swc_ecma_transforms_typescript = "0.189.1"
-swc_ecma_visit = "0.99.1"
+swc_ecma_ast = "0.114.0"
+swc_ecma_parser = { version = "0.145.0", features = ["typescript"] }
+swc_ecma_transforms = "0.231.0"
+swc_ecma_transforms_react = "0.185.0"
+swc_ecma_transforms_typescript = "0.190.0"
+swc_ecma_visit = "0.100.0"
 
 num_cpus = "1.16.0"
 criterion2  = { version = "0.10.0", default-features = false }

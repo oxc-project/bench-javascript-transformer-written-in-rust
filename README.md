@@ -37,6 +37,24 @@ Codspeed measures performance by cpu instructions.
 | parallel      | `195.8 ms` (1.00x) | `437.2 ms` (2.23x) |
 | single-thread | `106.0 ms` (1.00x) | `221.7 ms` (2.09x) |
 
+### MacBook Pro M3 Max
+
+#### cal.com.tsx
+
+|               | oxc               | swc               |
+| ------------- | ----------------- | ----------------- |
+| no-drop       | `12.4 ms` (1.00x) | `31.1 ms` (2.50x) |
+| parallel      | `21.5 ms` (1.00x) | `58.2 ms` (2.70x) |
+| single-thread | `12.4 ms` (1.00x) | `32.1 ms` (2.59x) |
+
+#### typescript.js
+
+|               | oxc                | swc                |
+| ------------- | ------------------ | ------------------ |
+| no-drop       | `95.5 ms` (1.00x)  | `204.0 ms` (2.14x) |
+| parallel      | `140.0 ms` (1.00x) | `373.0 ms` (2.66x) |
+| single-thread | `95.5 ms` (1.00x)  | `211.8 ms` (2.22x) |
+
 ### Run benchmark locally
 
 Run the following command on your machine for replication.

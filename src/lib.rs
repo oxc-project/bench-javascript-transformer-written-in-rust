@@ -3,7 +3,7 @@ pub mod oxc {
 
     use oxc::{
         allocator::Allocator,
-        codegen::{Codegen, CodegenOptions},
+        codegen::CodeGenerator,
         parser::Parser,
         span::SourceType,
         transformer::{ReactOptions, TransformOptions, Transformer, TypeScriptOptions},
@@ -31,9 +31,7 @@ pub mod oxc {
             )
             .build(&mut program)
             .unwrap();
-            Codegen::<false>::new("", source_text, trivias, CodegenOptions::default())
-                .build(&program)
-                .source_text
+            CodeGenerator::new().build(&program).source_text
         };
 
         (allocator, printed)

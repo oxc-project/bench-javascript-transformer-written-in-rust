@@ -21,7 +21,7 @@ pub mod oxc {
                 react: ReactOptions::default(),
                 ..TransformOptions::default()
             };
-            Transformer::new(
+            let ret = Transformer::new(
                 &allocator,
                 Path::new(""),
                 source_type,
@@ -29,8 +29,8 @@ pub mod oxc {
                 trivias.clone(),
                 transform_options,
             )
-            .build(&mut program)
-            .unwrap();
+            .build(&mut program);
+            assert!(ret.errors.is_empty());
             CodeGenerator::new().build(&program).source_text
         };
 

@@ -23,7 +23,7 @@ doctest = false
 [dependencies]
 oxc = { version = "0.16.0", features = ["transformer", "codegen"] }
 
-swc = "0.278.0"
+swc = "0.279.0"
 swc_common = "0.34.0"
 swc_ecma_ast = "0.115.0"
 swc_ecma_parser = { version = "0.146.0", features = ["typescript"] }

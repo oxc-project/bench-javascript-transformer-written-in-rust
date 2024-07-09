@@ -1771,9 +1771,9 @@ dependencies = [
 
 [[package]]
 name = "swc"
-version = "0.279.0"
+version = "0.279.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "267d1595c1992901ff8d9b0b299b000c38c1f4bcc117c7a60652acaaac77e356"
+checksum = "e360f7055c05d58acf732bac714094f46556ee0d271f58fcd9f3683853d05e1a"
 dependencies = [
  "anyhow",
  "base64",
@@ -1847,9 +1847,9 @@ dependencies = [
 
 [[package]]
 name = "swc_common"
-version = "0.34.3"
+version = "0.34.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2b0d7bcbd9faf61cec1a552cbdaec57faefbb10be7cc5f959613c6f91b5a9254"
+checksum = "9087befec6b63911f9d2f239e4f91c9b21589c169b86ed2d616944d23cf4a243"
 dependencies = [
  "ahash",
  "ast_node",
@@ -2259,9 +2259,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_parser"
-version = "0.146.9"
+version = "0.146.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1fac996c018c8d4e046cf220464a08632478249b00248f982c8603b2635da492"
+checksum = "0a4e0c2e85f12c63b85c805e923079b04d1fb3e25edd069d638eed5f2098de74"
 dependencies = [
  "either",
  "new_debug_unreachable",

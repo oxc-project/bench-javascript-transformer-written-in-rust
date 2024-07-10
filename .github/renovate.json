@@ -6,19 +6,22 @@
       "groupName": "oxc",
       "matchPackagePrefixes": ["oxc"],
       "schedule": ["at any time"],
-      "automergeType": "pr"
+      "automergeType": "pr",
+      "rangeStrategy": "bump"
     },
     {
       "groupName": "swc",
       "matchPackagePrefixes": ["swc"],
       "schedule": ["at any time"],
-      "automergeType": "pr"
+      "automergeType": "pr",
+      "rangeStrategy": "bump"
     },
     {
       "groupName": "biome",
       "matchPackagePrefixes": ["biome"],
       "schedule": ["at any time"],
-      "automergeType": "pr"
+      "automergeType": "pr",
+      "rangeStrategy": "bump"
     }
   ]
 }

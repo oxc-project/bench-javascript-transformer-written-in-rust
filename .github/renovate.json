@@ -4,19 +4,19 @@
   "packageRules": [
     {
       "groupName": "oxc",
-      "matchPackagePatterns": ["oxc"],
+      "matchPackagePrefixes": ["oxc"],
       "schedule": ["at any time"],
       "automergeType": "pr"
     },
     {
       "groupName": "swc",
-      "matchPackagePatterns": ["swc"],
+      "matchPackagePrefixes": ["swc"],
       "schedule": ["at any time"],
       "automergeType": "pr"
     },
     {
       "groupName": "biome",
-      "matchPackagePatterns": ["biome"],
+      "matchPackagePrefixes": ["biome"],
       "schedule": ["at any time"],
       "automergeType": "pr"
     }

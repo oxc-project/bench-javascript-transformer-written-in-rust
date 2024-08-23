@@ -5,6 +5,7 @@ pub mod oxc {
         allocator::Allocator,
         codegen::CodeGenerator,
         parser::Parser,
+        semantic::SemanticBuilder,
         span::SourceType,
         transformer::{ReactOptions, TransformOptions, Transformer, TypeScriptOptions},
     };
@@ -21,15 +22,19 @@ pub mod oxc {
                 react: ReactOptions::default(),
                 ..TransformOptions::default()
             };
+            let (symbols, scopes) = SemanticBuilder::new(source_text, source_type)
+                .build(&program)
+                .semantic
+                .into_symbol_table_and_scope_tree();
             let ret = Transformer::new(
                 &allocator,
-                Path::new(""),
+                path,
                 source_type,
                 source_text,
                 trivias.clone(),
                 transform_options,
             )
-            .build(&mut program);
+            .build_with_symbols_and_scopes(symbols, scopes, &mut program);
             assert!(ret.errors.is_empty());
             CodeGenerator::new().build(&program).source_text
         };

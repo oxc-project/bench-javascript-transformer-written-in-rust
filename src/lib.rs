@@ -49,7 +49,7 @@ pub mod swc {
     use swc::{Compiler, PrintArgs, SwcComments};
     use swc_common::{chain, source_map::SourceMap, sync::Lrc, Mark, GLOBALS};
     use swc_ecma_ast::Program;
-    use swc_ecma_parser::{EsConfig, Parser, StringInput, Syntax, TsConfig};
+    use swc_ecma_parser::{EsSyntax, Parser, StringInput, Syntax, TsSyntax};
     use swc_ecma_transforms::resolver;
     use swc_ecma_transforms_react::{react, Options, Runtime};
     use swc_ecma_transforms_typescript::strip;
@@ -61,10 +61,10 @@ pub mod swc {
         let compiler = Compiler::new(Arc::clone(&cm));
         let comments = SwcComments::default();
         let syntax = match path.extension().unwrap().to_str().unwrap() {
-            "js" => Syntax::Es(EsConfig::default()),
-            "tsx" => Syntax::Typescript(TsConfig {
+            "js" => Syntax::Es(EsSyntax::default()),
+            "tsx" => Syntax::Typescript(TsSyntax {
                 tsx: true,
-                ..TsConfig::default()
+                ..TsSyntax::default()
             }),
             _ => panic!("need to define syntax for swc"),
         };

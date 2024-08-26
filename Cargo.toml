@@ -35,7 +35,7 @@ swc_ecma_visit = "0.104.8"
 num_cpus = "1.16.0"
 criterion2  = { version = "1.0.0", default-features = false }
 rayon = "1.10.0"
-mimalloc = "0.1.42"
+mimalloc = "0.1.43"
 
 [features]
 codspeed = ["criterion2/codspeed"]

@@ -85,7 +85,7 @@ pub mod swc {
             ));
 
             let mut ast_pass = chain!(
-                strip(top_level_mark),
+                strip(unresolved_mark, top_level_mark),
                 react(
                     Arc::clone(&cm),
                     Some(comments),

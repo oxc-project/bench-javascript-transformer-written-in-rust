@@ -22,7 +22,7 @@ pub mod oxc {
                 react: ReactOptions::default(),
                 ..TransformOptions::default()
             };
-            let (symbols, scopes) = SemanticBuilder::new(source_text, source_type)
+            let (symbols, scopes) = SemanticBuilder::new(source_text)
                 .build(&program)
                 .semantic
                 .into_symbol_table_and_scope_tree();

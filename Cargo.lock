@@ -2476,9 +2476,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_typescript"
-version = "0.202.0"
+version = "0.202.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2bfb758c4335038fd27668c17fb174ee18cd96c305a43fe38cc890f57cc6d395"
+checksum = "31acb773a2d82e5524d021aa77a38ae8bc708171b0005fd420b43356d8dfba25"
 dependencies = [
  "ryu-js",
  "serde",

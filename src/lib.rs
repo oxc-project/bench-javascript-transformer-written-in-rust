@@ -7,7 +7,7 @@ pub mod oxc {
         parser::Parser,
         semantic::SemanticBuilder,
         span::SourceType,
-        transformer::{ReactOptions, TransformOptions, Transformer, TypeScriptOptions},
+        transformer::{JsxOptions, TransformOptions, Transformer, TypeScriptOptions},
     };
 
     pub fn transform(path: &Path, source_text: &str) -> (Allocator, String) {
@@ -19,7 +19,7 @@ pub mod oxc {
             let mut program = ret.program;
             let transform_options = TransformOptions {
                 typescript: TypeScriptOptions::default(),
-                react: ReactOptions::default(),
+                react: JsxOptions::default(),
                 ..TransformOptions::default()
             };
             let (symbols, scopes) = SemanticBuilder::new(source_text)
@@ -29,14 +29,13 @@ pub mod oxc {
             let ret = Transformer::new(
                 &allocator,
                 path,
-                source_type,
                 source_text,
                 trivias.clone(),
                 transform_options,
             )
             .build_with_symbols_and_scopes(symbols, scopes, &mut program);
             assert!(ret.errors.is_empty());
-            CodeGenerator::new().build(&program).source_text
+            CodeGenerator::new().build(&program).code
         };
 
         (allocator, printed)

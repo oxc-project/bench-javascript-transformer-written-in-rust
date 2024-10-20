@@ -15,25 +15,18 @@ pub mod oxc {
         let source_type = SourceType::from_path(path).unwrap();
         let printed = {
             let ret = Parser::new(&allocator, source_text, source_type).parse();
-            let trivias = ret.trivias;
             let mut program = ret.program;
             let transform_options = TransformOptions {
                 typescript: TypeScriptOptions::default(),
                 react: JsxOptions::default(),
                 ..TransformOptions::default()
             };
-            let (symbols, scopes) = SemanticBuilder::new(source_text)
+            let (symbols, scopes) = SemanticBuilder::new()
                 .build(&program)
                 .semantic
                 .into_symbol_table_and_scope_tree();
-            let ret = Transformer::new(
-                &allocator,
-                path,
-                source_text,
-                trivias.clone(),
-                transform_options,
-            )
-            .build_with_symbols_and_scopes(symbols, scopes, &mut program);
+            let ret = Transformer::new(&allocator, path, transform_options)
+                .build_with_symbols_and_scopes(symbols, scopes, &mut program);
             assert!(ret.errors.is_empty());
             CodeGenerator::new().build(&program).code
         };

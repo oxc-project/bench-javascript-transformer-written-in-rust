@@ -23,13 +23,13 @@ doctest = false
 [dependencies]
 oxc = { version = "0.33.0", features = ["transformer", "codegen", "semantic"] }
 
-swc = "1.0.1"
+swc = "2.0.0"
 swc_common = "1.0.0"
 swc_ecma_ast = "1.0.0"
-swc_ecma_parser = { version = "1.0.1", features = ["typescript"] }
-swc_ecma_transforms = "1.0.0"
-swc_ecma_transforms_react = "1.0.0"
-swc_ecma_transforms_typescript = "1.0.1"
+swc_ecma_parser = { version = "2.0.0", features = ["typescript"] }
+swc_ecma_transforms = "2.0.0"
+swc_ecma_transforms_react = "2.0.0"
+swc_ecma_transforms_typescript = "2.0.0"
 swc_ecma_visit = "1.0.0"
 
 num_cpus = "1.16.0"

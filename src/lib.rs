@@ -18,7 +18,7 @@ pub mod oxc {
             let mut program = ret.program;
             let transform_options = TransformOptions {
                 typescript: TypeScriptOptions::default(),
-                react: JsxOptions::default(),
+                jsx: JsxOptions::default(),
                 ..TransformOptions::default()
             };
             let (symbols, scopes) = SemanticBuilder::new()

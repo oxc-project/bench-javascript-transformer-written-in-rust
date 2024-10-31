@@ -39,13 +39,12 @@ pub mod swc {
     use std::{path::Path, sync::Arc};
 
     use swc::{Compiler, PrintArgs, SwcComments};
-    use swc_common::{chain, source_map::SourceMap, sync::Lrc, Mark, GLOBALS};
+    use swc_common::{source_map::SourceMap, sync::Lrc, Mark, GLOBALS};
     use swc_ecma_ast::Program;
     use swc_ecma_parser::{EsSyntax, Parser, StringInput, Syntax, TsSyntax};
     use swc_ecma_transforms::resolver;
     use swc_ecma_transforms_react::{react, Options, Runtime};
     use swc_ecma_transforms_typescript::strip;
-    use swc_ecma_visit::FoldWith;
     use swc_ecma_visit::VisitMutWith;
 
     pub fn transform(path: &Path, source_text: &str) -> (Program, String) {
@@ -76,7 +75,7 @@ pub mod swc {
                 syntax.typescript(),
             ));
 
-            let mut ast_pass = chain!(
+            let mut ast_pass = (
                 strip(unresolved_mark, top_level_mark),
                 react(
                     Arc::clone(&cm),
@@ -86,10 +85,10 @@ pub mod swc {
                         ..Options::default()
                     },
                     top_level_mark,
-                    unresolved_mark
+                    unresolved_mark,
                 ),
             );
-            let program = program.fold_with(&mut ast_pass);
+            let program = program.apply(&mut ast_pass);
 
             let printed = compiler
                 .print(&program, PrintArgs::default())

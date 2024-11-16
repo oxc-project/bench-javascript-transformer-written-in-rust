@@ -25,7 +25,7 @@ pub mod oxc {
                 .build(&program)
                 .semantic
                 .into_symbol_table_and_scope_tree();
-            let ret = Transformer::new(&allocator, path, transform_options)
+            let ret = Transformer::new(&allocator, path, &transform_options)
                 .build_with_symbols_and_scopes(symbols, scopes, &mut program);
             assert!(ret.errors.is_empty());
             CodeGenerator::new().build(&program).code

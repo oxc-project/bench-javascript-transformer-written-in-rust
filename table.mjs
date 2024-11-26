@@ -1,10 +1,10 @@
 /**
  * @file table.mjs
  * @description Generate a table from criterion output.
- * 
+ *
  * Usage:
  *   pnpm table [options]
- * 
+ *
  * # Options
  *   -f,--format <format>  Output format. 'md' or 'csv'. Default: 'md'
  *   -o,--output <path>    Output file path. Prints to stdout if not set.
@@ -26,7 +26,7 @@ async function readData() {
 
       const measurements = await fs.promises.readdir(`${dir}/${group}/${bench}`);
       for (const measurement of measurements) {
-        const json = await import(`${dir}/${group}/${bench}/${measurement}/new/estimates.json`, { assert: { type: "json" } });
+        const json = await import(`${dir}/${group}/${bench}/${measurement}/new/estimates.json`, { with: { type: "json" } });
         const duration_ms = json.default.mean.point_estimate / 1_000_000;
         data[group][bench][measurement] ||= { duration_ms };
       }

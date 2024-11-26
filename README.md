@@ -6,7 +6,7 @@ The purpose of this benchmark is for people who wants to evaluate and compare th
 
 The benchmark measures the whole parse -> transform -> codegen pipeline as a real-word scenario.
 
-The numbers indicate that Oxc is at least 2 times faster than Swc.
+The numbers indicate that Oxc is at least 3 times faster than Swc.
 
 ## Results
 
@@ -19,41 +19,21 @@ The numbers indicate that Oxc is at least 2 times faster than Swc.
 
 Codspeed measures performance by cpu instructions.
 
-### Mac mini M2 8 cores
+### Target lowering to es2015
 
 ### cal.com.tsx
-
-|               | oxc               | swc               |
-| ------------- | ----------------- | ----------------- |
-| no-drop       | `14.4 ms` (1.00x) | `31.5 ms` (2.20x) |
-| parallel      | `26.9 ms` (1.00x) | `69.4 ms` (2.59x) |
-| single-thread | `14.4 ms` (1.00x) | `32.3 ms` (2.25x) |
+|               | oxc               | swc                |
+| ------------- | ----------------- | ------------------ |
+| no-drop       | `12.8 ms` (1.00x) | `44.5 ms` (3.46x)  |
+| parallel      | `22.8 ms` (1.00x) | `117.4 ms` (5.14x) |
+| single-thread | `12.3 ms` (1.00x) | `44.6 ms` (3.63x)  |
 
 ### typescript.js
-
 |               | oxc                | swc                |
 | ------------- | ------------------ | ------------------ |
-| no-drop       | `106.7 ms` (1.00x) | `213.8 ms` (2.00x) |
-| parallel      | `195.8 ms` (1.00x) | `437.2 ms` (2.23x) |
-| single-thread | `106.0 ms` (1.00x) | `221.7 ms` (2.09x) |
-
-### MacBook Pro M3 Max
-
-#### cal.com.tsx
-
-|               | oxc               | swc               |
-| ------------- | ----------------- | ----------------- |
-| no-drop       | `12.4 ms` (1.00x) | `31.1 ms` (2.50x) |
-| parallel      | `21.5 ms` (1.00x) | `58.2 ms` (2.70x) |
-| single-thread | `12.4 ms` (1.00x) | `32.1 ms` (2.59x) |
-
-#### typescript.js
-
-|               | oxc                | swc                |
-| ------------- | ------------------ | ------------------ |
-| no-drop       | `95.5 ms` (1.00x)  | `204.0 ms` (2.14x) |
-| parallel      | `140.0 ms` (1.00x) | `373.0 ms` (2.66x) |
-| single-thread | `95.5 ms` (1.00x)  | `211.8 ms` (2.22x) |
+| no-drop       | `91.1 ms` (1.00x)  | `363.8 ms` (3.99x) |
+| parallel      | `146.9 ms` (1.00x) | `770.5 ms` (5.24x) |
+| single-thread | `90.2 ms` (1.00x)  | `370.2 ms` (4.11x) |
 
 ### Run benchmark locally
 
@@ -76,12 +56,12 @@ pnpm run table
 ./memory.sh
 
 ./files/cal.com.tsx
-oxc 41.7 mb
-swc 31.1 mb
+oxc 26.3 mb
+swc 30.9 mb
 
 ./files/typescript.js
-oxc 224.4 mb
-swc 160.1 mb
+oxc 137.8 mb
+swc 148.5 mb
 ```
 
 ## Setup

@@ -7,7 +7,7 @@ pub mod oxc {
         parser::Parser,
         semantic::SemanticBuilder,
         span::SourceType,
-        transformer::{JsxOptions, TransformOptions, Transformer, TypeScriptOptions},
+        transformer::{TransformOptions, Transformer},
     };
 
     pub fn transform(path: &Path, source_text: &str) -> (Allocator, String) {
@@ -16,11 +16,7 @@ pub mod oxc {
         let printed = {
             let ret = Parser::new(&allocator, source_text, source_type).parse();
             let mut program = ret.program;
-            let transform_options = TransformOptions {
-                typescript: TypeScriptOptions::default(),
-                jsx: JsxOptions::default(),
-                ..TransformOptions::default()
-            };
+            let transform_options = TransformOptions::from_target("es2015").unwrap();
             let (symbols, scopes) = SemanticBuilder::new()
                 .build(&program)
                 .semantic
@@ -38,16 +34,19 @@ pub mod oxc {
 pub mod swc {
     use std::{path::Path, sync::Arc};
 
-    use swc::{Compiler, PrintArgs, SwcComments};
-    use swc_common::{source_map::SourceMap, sync::Lrc, Mark, GLOBALS};
-    use swc_ecma_ast::Program;
+    use swc::{try_with_handler, Compiler, PrintArgs, SwcComments};
+    use swc_common::{errors::HANDLER, source_map::SourceMap, sync::Lrc, Mark, GLOBALS};
     use swc_ecma_parser::{EsSyntax, Parser, StringInput, Syntax, TsSyntax};
-    use swc_ecma_transforms::resolver;
+    use swc_ecma_transforms::{
+        compat::{es2016, es2017, es2018, es2019, es2020, es2021, es2022},
+        helpers::{Helpers, HELPERS},
+        resolver,
+    };
     use swc_ecma_transforms_react::{react, Options, Runtime};
     use swc_ecma_transforms_typescript::strip;
     use swc_ecma_visit::VisitMutWith;
 
-    pub fn transform(path: &Path, source_text: &str) -> (Program, String) {
+    pub fn transform(path: &Path, source_text: &str) -> String {
         let cm = Lrc::new(SourceMap::new(swc_common::FilePathMapping::empty()));
         let compiler = Compiler::new(Arc::clone(&cm));
         let comments = SwcComments::default();
@@ -61,40 +60,55 @@ pub mod swc {
         };
 
         GLOBALS.set(&Default::default(), || {
-            let input = StringInput::new(source_text, Default::default(), Default::default());
-            let mut program = Parser::new(syntax, input, Some(&comments))
-                .parse_program()
-                .unwrap();
+            try_with_handler(cm.clone(), Default::default(), |handler| {
+                HELPERS.set(&Helpers::new(true), || {
+                    HANDLER.set(handler, || {
+                        let input =
+                            StringInput::new(source_text, Default::default(), Default::default());
+                        let mut program = Parser::new(syntax, input, Some(&comments))
+                            .parse_program()
+                            .unwrap();
 
-            let top_level_mark = Mark::new();
-            let unresolved_mark = Mark::new();
+                        let top_level_mark = Mark::new();
+                        let unresolved_mark = Mark::new();
 
-            program.visit_mut_with(&mut resolver(
-                unresolved_mark,
-                top_level_mark,
-                syntax.typescript(),
-            ));
+                        program.visit_mut_with(&mut resolver(
+                            unresolved_mark,
+                            top_level_mark,
+                            syntax.typescript(),
+                        ));
 
-            let mut ast_pass = (
-                strip(unresolved_mark, top_level_mark),
-                react(
-                    Arc::clone(&cm),
-                    Some(comments),
-                    Options {
-                        runtime: Some(Runtime::Automatic),
-                        ..Options::default()
-                    },
-                    top_level_mark,
-                    unresolved_mark,
-                ),
-            );
-            let program = program.apply(&mut ast_pass);
+                        let mut ast_pass = (
+                            strip(unresolved_mark, top_level_mark),
+                            react(
+                                Arc::clone(&cm),
+                                Some(comments),
+                                Options {
+                                    runtime: Some(Runtime::Automatic),
+                                    ..Options::default()
+                                },
+                                top_level_mark,
+                                unresolved_mark,
+                            ),
+                            es2022(Default::default(), unresolved_mark),
+                            es2021(),
+                            es2020(Default::default(), unresolved_mark),
+                            es2019(),
+                            es2018(Default::default()),
+                            es2017(Default::default(), unresolved_mark),
+                            es2016(),
+                        );
+                        let program = program.apply(&mut ast_pass);
 
-            let printed = compiler
-                .print(&program, PrintArgs::default())
-                .expect("print failed");
+                        let printed = compiler
+                            .print(&program, PrintArgs::default())
+                            .expect("print failed");
 
-            (program, printed.code)
+                        Ok(printed.code)
+                    })
+                })
+            })
+            .unwrap()
         })
     }
 }

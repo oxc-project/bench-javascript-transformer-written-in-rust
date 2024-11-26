@@ -49,7 +49,7 @@ impl TheBencher for OxcBencher {
 struct SwcBencher;
 
 impl TheBencher for SwcBencher {
-    type RunOutput = (swc_ecma_ast::Program, String);
+    type RunOutput = String;
 
     const ID: &'static str = "swc";
 

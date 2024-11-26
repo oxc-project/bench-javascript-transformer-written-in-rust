@@ -10,22 +10,30 @@ pub mod oxc {
         transformer::{TransformOptions, Transformer},
     };
 
-    pub fn transform(path: &Path, source_text: &str) -> (Allocator, String) {
+    pub fn transform_options() -> TransformOptions {
+        TransformOptions::from_target("es2015").unwrap()
+    }
+
+    pub fn transform(
+        path: &Path,
+        source_text: &str,
+        options: &TransformOptions,
+    ) -> (Allocator, String) {
         let allocator = Allocator::default();
         let source_type = SourceType::from_path(path).unwrap();
-        let printed = {
-            let ret = Parser::new(&allocator, source_text, source_type).parse();
-            let mut program = ret.program;
-            let transform_options = TransformOptions::from_target("es2015").unwrap();
-            let (symbols, scopes) = SemanticBuilder::new()
-                .build(&program)
-                .semantic
-                .into_symbol_table_and_scope_tree();
-            let ret = Transformer::new(&allocator, path, &transform_options)
-                .build_with_symbols_and_scopes(symbols, scopes, &mut program);
-            assert!(ret.errors.is_empty());
-            CodeGenerator::new().build(&program).code
-        };
+        let ret = Parser::new(&allocator, source_text, source_type).parse();
+        let mut program = ret.program;
+        let (symbols, scopes) = SemanticBuilder::new()
+            .build(&program)
+            .semantic
+            .into_symbol_table_and_scope_tree();
+        let ret = Transformer::new(&allocator, path, options).build_with_symbols_and_scopes(
+            symbols,
+            scopes,
+            &mut program,
+        );
+        assert!(ret.errors.is_empty());
+        let printed = CodeGenerator::new().build(&program).code;
 
         (allocator, printed)
     }

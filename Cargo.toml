@@ -26,7 +26,7 @@ oxc = { version = "0.48.1", features = ["transformer", "codegen", "semantic"] }
 swc = "11.0.1"
 swc_common = "5.0.1"
 swc_ecma_ast = "5.1.0"
-swc_ecma_parser = { version = "7.0.0", features = ["typescript"] }
+swc_ecma_parser = { version = "7.0.1", features = ["typescript"] }
 swc_ecma_transforms = { version = "10.0.0", features = ["compat"] }
 swc_ecma_transforms_react = "8.0.0"
 swc_ecma_transforms_typescript = "8.0.0"

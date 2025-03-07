@@ -2518,9 +2518,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_parser"
-version = "10.0.0"
+version = "10.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f9e336f2b460882df2c132328b3c29ab3e680e1db681a05ec3e406940d98320a"
+checksum = "9576fd56e613f83990190778878139ab1a8d5ff0b316318ba34204407a0142a2"
 dependencies = [
  "either",
  "new_debug_unreachable",
@@ -2770,9 +2770,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_typescript"
-version = "12.0.0"
+version = "12.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "19c32ebb3dd1942d35142de60c9dc0f3c034d26567de7eb8b3ad6de426f5b0e9"
+checksum = "ff4f2ea9134fa999039ace105daee34e4811cc58e34322605bafcd57de4a124c"
 dependencies = [
  "once_cell",
  "rustc-hash 2.1.1",

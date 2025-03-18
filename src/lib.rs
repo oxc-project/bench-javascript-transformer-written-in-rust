@@ -23,15 +23,12 @@ pub mod oxc {
         let source_type = SourceType::from_path(path).unwrap();
         let ret = Parser::new(&allocator, source_text, source_type).parse();
         let mut program = ret.program;
-        let (symbols, scopes) = SemanticBuilder::new()
+        let scoping = SemanticBuilder::new()
             .build(&program)
             .semantic
-            .into_symbol_table_and_scope_tree();
-        let ret = Transformer::new(&allocator, path, options).build_with_symbols_and_scopes(
-            symbols,
-            scopes,
-            &mut program,
-        );
+            .into_scoping();
+        let ret =
+            Transformer::new(&allocator, path, options).build_with_scoping(scoping, &mut program);
         assert!(ret.errors.is_empty());
         let printed = CodeGenerator::new().build(&program).code;
 

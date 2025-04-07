@@ -24,8 +24,8 @@ doctest = false
 oxc = { version = "0.62.0", features = ["transformer", "codegen", "semantic"] }
 
 swc = "18.0.0"
-swc_common = "8.0.0"
-swc_ecma_ast = "8.0.1"
+swc_common = "8.0.1"
+swc_ecma_ast = "8.1.0"
 swc_ecma_parser = { version = "11.0.0", features = ["typescript"] }
 swc_ecma_transforms = { version = "15.0.0", features = ["compat"] }
 swc_ecma_transforms_react = "13.0.0"

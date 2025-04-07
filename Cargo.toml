@@ -1,7 +1,7 @@
 [package]
 name = "bench-transformer"
 version = "0.1.0"
-# edition = "2024"
+edition = "2024"
 publish = false
 
 [[bench]]
@@ -23,7 +23,7 @@ doctest = false
 [dependencies]
 oxc = { version = "0.62.0", features = ["transformer", "codegen", "semantic"] }
 
-swc = "18.0.0"
+swc = "20.0.0"
 swc_common = "8.0.1"
 swc_ecma_ast = "8.1.0"
 swc_ecma_parser = { version = "11.0.0", features = ["typescript"] }
@@ -35,7 +35,7 @@ swc_ecma_visit = "8.0.0"
 num_cpus = "1.16.0"
 criterion2  = { version = "3.0.0", default-features = false }
 rayon = "1.10.0"
-mimalloc = "0.1.43"
+mimalloc = "0.1.45"
 
 [features]
 codspeed = ["criterion2/codspeed"]

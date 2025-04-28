@@ -197,9 +197,9 @@ checksum = "4848ed5727d39a7573551c205bcb1ccd88c8cad4ed2c80f62e2316f208196b8d"
 
 [[package]]
 name = "browserslist-rs"
-version = "0.17.0"
+version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "74c973b79d9b6b89854493185ab760c6ef8e54bcfad10ad4e33991e46b374ac8"
+checksum = "2f95aff901882c66e4b642f3f788ceee152ef44f8a5ef12cb1ddee5479c483be"
 dependencies = [
  "ahash",
  "chrono",
@@ -1602,9 +1602,9 @@ checksum = "439ee305def115ba05938db6eb1644ff94165c5ab5e9420d1c1bcedbba909391"
 
 [[package]]
 name = "preset_env_base"
-version = "2.0.1"
+version = "3.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07852df2dda2f0ab8c3407a6fd19e9389563af11c20f6c299bd07ff9fc96d6ae"
+checksum = "b06c1ead1873928228f01ffafe4800c3accb27d019c034626c54698408e36bfb"
 dependencies = [
  "anyhow",
  "browserslist-rs",
@@ -2046,9 +2046,9 @@ dependencies = [
 
 [[package]]
 name = "swc"
-version = "20.0.0"
+version = "21.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1311db8bbe20ad5374dd10a92d2dba3bf5ac59ade06292bdd381d1897c74664a"
+checksum = "3809091d5035036db41f5212697b10e492a6c97d50bf76839ac52481547a0528"
 dependencies = [
  "anyhow",
  "base64",
@@ -2167,9 +2167,9 @@ dependencies = [
 
 [[package]]
 name = "swc_compiler_base"
-version = "17.0.0"
+version = "18.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dc96c4a212a3120deeefbc180bd7a4fed3d076af87d452d0b5773cc98b3934f6"
+checksum = "3516918cdce803f6c175aeefefbf3a05b4064eadc2a772f98da63d4282f85497"
 dependencies = [
  "anyhow",
  "base64",
@@ -2620,9 +2620,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_preset_env"
-version = "15.0.0"
+version = "16.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cd6e90087fe511cde69e3648bceb90b04be01236451ced67486371f827d691e1"
+checksum = "dcdb997223f2c92bb31278cf25b37398209fe5ce6a5cf276cf0cdc264386124b"
 dependencies = [
  "anyhow",
  "dashmap",
@@ -2935,9 +2935,9 @@ dependencies = [
 
 [[package]]
 name = "swc_error_reporters"
-version = "9.1.2"
+version = "10.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc812b793a12b737b6cb949a6e8c87dfcd006c07d9490a5c4529d61e890003dc"
+checksum = "499cf6a20e6acb36f15e22cca18dadc108d7046ae062840b7371ae02eac4dfde"
 dependencies = [
  "anyhow",
  "miette",

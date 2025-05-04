@@ -21,7 +21,7 @@ test    = false
 doctest = false
 
 [dependencies]
-oxc = { version = "0.67.0", features = ["transformer", "codegen", "semantic"] }
+oxc = { version = "0.68.0", features = ["transformer", "codegen", "semantic"] }
 
 swc = "22.0.0"
 swc_common = "9.0.0"

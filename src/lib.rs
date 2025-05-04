@@ -3,7 +3,7 @@ pub mod oxc {
 
     use oxc::{
         allocator::Allocator,
-        codegen::CodeGenerator,
+        codegen::Codegen,
         parser::Parser,
         semantic::SemanticBuilder,
         span::SourceType,
@@ -30,7 +30,7 @@ pub mod oxc {
         let ret =
             Transformer::new(&allocator, path, options).build_with_scoping(scoping, &mut program);
         assert!(ret.errors.is_empty());
-        let printed = CodeGenerator::new().build(&program).code;
+        let printed = Codegen::new().build(&program).code;
 
         (allocator, printed)
     }

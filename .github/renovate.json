@@ -1,10 +1,13 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["github>Boshen/renovate"],
+  "extends": ["github>Boshen/renovate", "helpers:pinGitHubActionDigestsToSemver"],
+  "lockFileMaintenance": {
+    "enabled": true
+  },
   "packageRules": [
     {
       "groupName": "oxc",
-      "matchPackagePrefixes": ["oxc"],
+      "matchDepNames": ["oxc"],
       "schedule": ["at any time"],
       "automergeType": "pr",
       "rangeStrategy": "bump"

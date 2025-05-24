@@ -22,18 +22,17 @@ Codspeed measures performance by cpu instructions.
 ### Target lowering to es2015
 
 ### cal.com.tsx
-|               | oxc               | swc                |
-| ------------- | ----------------- | ------------------ |
-| no-drop       | `12.8 ms` (1.00x) | `44.5 ms` (3.46x)  |
-| parallel      | `22.8 ms` (1.00x) | `117.4 ms` (5.14x) |
-| single-thread | `12.3 ms` (1.00x) | `44.6 ms` (3.63x)  |
-
+|               | oxc               | swc               |
+| ------------- | ----------------- | ----------------- |
+| no-drop       | `11.3 ms` (1.00x) | `38.1 ms` (3.36x) |
+| parallel      | `20.6 ms` (1.00x) | `83.1 ms` (4.03x) |
+| single-thread | `11.3 ms` (1.00x) | `38.1 ms` (3.37x) |
 ### typescript.js
 |               | oxc                | swc                |
 | ------------- | ------------------ | ------------------ |
-| no-drop       | `91.1 ms` (1.00x)  | `363.8 ms` (3.99x) |
-| parallel      | `146.9 ms` (1.00x) | `770.5 ms` (5.24x) |
-| single-thread | `90.2 ms` (1.00x)  | `370.2 ms` (4.11x) |
+| no-drop       | `80.6 ms` (1.00x)  | `337.9 ms` (4.19x) |
+| parallel      | `130.3 ms` (1.00x) | `725.2 ms` (5.57x) |
+| single-thread | `80.3 ms` (1.00x)  | `338.0 ms` (4.21x) |
 
 ### Run benchmark locally
 

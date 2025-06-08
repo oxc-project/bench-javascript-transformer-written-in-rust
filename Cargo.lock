@@ -188,9 +188,9 @@ checksum = "473976d7a8620bb1e06dcdd184407c2363fe4fec8e983ee03ed9197222634a31"
 
 [[package]]
 name = "browserslist-rs"
-version = "0.18.1"
+version = "0.18.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2f95aff901882c66e4b642f3f788ceee152ef44f8a5ef12cb1ddee5479c483be"
+checksum = "abf24e007a83ff1f58d2441b459fa26124aa1a7367da88948e9940f14e723d06"
 dependencies = [
  "ahash",
  "chrono",
@@ -239,9 +239,9 @@ dependencies = [
 
 [[package]]
 name = "cc"
-version = "1.2.24"
+version = "1.2.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "16595d3be041c03b09d08d0858631facccee9221e579704070e6e9e4915d3bc7"
+checksum = "956a5e21988b87f372569b66183b78babf23ebc2e744b733e4350a752c4dafac"
 dependencies = [
  "shlex",
 ]
@@ -614,9 +614,9 @@ dependencies = [
 
 [[package]]
 name = "hashbrown"
-version = "0.15.3"
+version = "0.15.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "84b26c544d002229e640969970a2e74021aadf6e2f96372b9c58eff97de08eb3"
+checksum = "5971ac85611da7067dbfcabef3c70ebb5606018acd9e2a3903a0da507521e0d5"
 dependencies = [
  "allocator-api2",
  "equivalent",
@@ -631,9 +631,9 @@ checksum = "2304e00983f87ffb38b55b444b5e3b60a884b5d30c0fca7d82fe33449bbe55ea"
 
 [[package]]
 name = "hermit-abi"
-version = "0.3.9"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d231dfb89cfffdbc30e7fc41579ed6066ad03abda9e567ccafae602b97ec5024"
+checksum = "f154ce46856750ed433c8649605bf7ed2de3bc35fd9d2a9f30cddd873c80cb08"
 
 [[package]]
 name = "hstr"
@@ -793,7 +793,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cea70ddb795996207ad57735b50c5982d8844f38ba9ee5f1aedcfb708a2aa11e"
 dependencies = [
  "equivalent",
- "hashbrown 0.15.3",
+ "hashbrown 0.15.4",
  "serde",
 ]
 
@@ -883,9 +883,9 @@ checksum = "241eaef5fd12c88705a01fc1066c48c4b36e0dd4377dcdc7ec3942cea7a69956"
 
 [[package]]
 name = "lock_api"
-version = "0.4.12"
+version = "0.4.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "07af8b9cdd281b7915f413fa73f29ebd5d55d0d3f0155584dade1ff18cea1b17"
+checksum = "96936507f153605bddfcda068dd804796c84324ed2510809e5b2a624c81da765"
 dependencies = [
  "autocfg",
  "scopeguard",
@@ -1028,9 +1028,9 @@ dependencies = [
 
 [[package]]
 name = "num_cpus"
-version = "1.16.0"
+version = "1.17.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4161fcb6d602d4d2081af7c3a45852d875a03dd337a6bfdd6e06407b61342a43"
+checksum = "91df4bbde75afed763b708b7eee1e8e7651e02d97f6d5dd763e89367e957b23b"
 dependencies = [
  "hermit-abi",
  "libc",
@@ -1081,9 +1081,9 @@ dependencies = [
 
 [[package]]
 name = "oxc-browserslist"
-version = "2.0.3"
+version = "2.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4038a8bd870385e829bc8982cb3c50ae98e125e3715218fa1daa10d663749698"
+checksum = "08f56cc6eaa393139eda31fc22b4638e3d3e58496122c1738026aa7c4a9631f9"
 dependencies = [
  "nom 8.0.0",
  "rustc-hash",
@@ -1126,7 +1126,7 @@ checksum = "92e50218e74886659d1d13de8e6a4ff13c7e96924ed0017bc193a1feb8001b18"
 dependencies = [
  "allocator-api2",
  "bumpalo",
- "hashbrown 0.15.3",
+ "hashbrown 0.15.4",
  "oxc_data_structures",
  "rustc-hash",
 ]
@@ -1183,7 +1183,7 @@ dependencies = [
  "nonmax",
  "oxc_index",
  "oxc_syntax",
- "petgraph 0.8.1",
+ "petgraph 0.8.2",
  "rustc-hash",
 ]
 
@@ -1455,9 +1455,9 @@ dependencies = [
 
 [[package]]
 name = "parking_lot"
-version = "0.12.3"
+version = "0.12.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f1bf18183cf54e8d6059647fc3063646a1801cf30896933ec2311622cc4b9a27"
+checksum = "70d58bf43669b5795d1576d0641cfb6fbb2057bf629506267a92807158584a13"
 dependencies = [
  "lock_api",
  "parking_lot_core",
@@ -1465,9 +1465,9 @@ dependencies = [
 
 [[package]]
 name = "parking_lot_core"
-version = "0.9.10"
+version = "0.9.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1e401f977ab385c9e4e3ab30627d6f26d00e2c73eef317493c4ec6d468726cf8"
+checksum = "bc838d2a56b5b1a6c25f55575dfc605fabb63bb2365f6c2353ef9159aa69e4a5"
 dependencies = [
  "cfg-if",
  "libc",
@@ -1512,12 +1512,12 @@ dependencies = [
 
 [[package]]
 name = "petgraph"
-version = "0.8.1"
+version = "0.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7a98c6720655620a521dcc722d0ad66cd8afd5d86e34a89ef691c50b7b24de06"
+checksum = "54acf3a685220b533e437e264e4d932cfbdc4cc7ec0cd232ed73c08d03b8a7ca"
 dependencies = [
  "fixedbitset",
- "hashbrown 0.15.3",
+ "hashbrown 0.15.4",
  "indexmap",
  "serde",
 ]
@@ -1880,9 +1880,9 @@ checksum = "56199f7ddabf13fe5074ce809e7d3f42b42ae711800501b5b16ea82ad029c39d"
 
 [[package]]
 name = "smallvec"
-version = "1.15.0"
+version = "1.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8917285742e9f3e1683f0a9c4e6b57960b7314d0b08d30d1ecd426713ee2eee9"
+checksum = "67b1b7a3b5fe4f1376887184045fcf45c69e92af734b7aaddc05fb777b6fbd03"
 
 [[package]]
 name = "smartstring"
@@ -1903,9 +1903,9 @@ checksum = "b7c388c1b5e93756d0c740965c41e8822f866621d41acbdf6336a6a168f8840c"
 
 [[package]]
 name = "sourcemap"
-version = "9.2.1"
+version = "9.2.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bdee719193ae5c919a3ee43f64c2c0dd87f9b9a451d67918a2a5ec2e3c70561c"
+checksum = "e22afbcb92ce02d23815b9795523c005cb9d3c214f8b7a66318541c240ea7935"
 dependencies = [
  "base64-simd",
  "bitvec",
@@ -2091,9 +2091,9 @@ dependencies = [
 
 [[package]]
 name = "swc_compiler_base"
-version = "22.0.0"
+version = "22.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3aef98ee955eac3339cb3a8152c64746196bd14919b41afdf2cc410c06e6cfee"
+checksum = "3993329d52eab041a7123fc25c76a54ead1488cb24114b5c7b56f0d1f9d2a210"
 dependencies = [
  "anyhow",
  "base64",
@@ -2169,9 +2169,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_codegen"
-version = "13.1.0"
+version = "13.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c6f929a62c96d50fc87fb54cf2135ecaec2d343d6df461f82462b8aed12da8cb"
+checksum = "005b9e6e4cdd15c4c437d6662e4fc6dc93f60bd1c5159a1afcf6cd9eea6fb24f"
 dependencies = [
  "ascii",
  "compact_str 0.7.1",
@@ -2484,9 +2484,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_minifier"
-version = "20.0.3"
+version = "20.0.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5c43654113e9a75edf05fbe2c66b5232e149f563c97bef58ff1a896daa288092"
+checksum = "cf26b860e6a0e23807c70b03175d0e09082cfe256130c4759fdf9372020d3a3f"
 dependencies = [
  "arrayvec",
  "bitflags",
@@ -2594,9 +2594,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_transforms_base"
-version = "15.1.0"
+version = "15.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bb01eeec1de9e2cfd089e3afcf3db60df10c812f97a42d953d094eba32e9d26f"
+checksum = "49c0a76bff24b9fa13d5451e7a664d18158849c45434d863e0553e29fb31170b"
 dependencies = [
  "better_scoped_tls",
  "bitflags",
@@ -2816,9 +2816,9 @@ dependencies = [
 
 [[package]]
 name = "swc_ecma_utils"
-version = "15.0.1"
+version = "15.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "199e2f048c1998d550ebe5296e0876a3e5b2f963d75a925c2208466071edb9d8"
+checksum = "7d2c29dbfc54e02c14975aff9d2c75ae6fff0808d860d9971a493d37870e282f"
 dependencies = [
  "indexmap",
  "num_cpus",
@@ -3082,9 +3082,9 @@ dependencies = [
 
 [[package]]
 name = "tracing-attributes"
-version = "0.1.28"
+version = "0.1.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "395ae124c09f9e6918a2310af6038fba074bcf474ac352496d5910dd59a2226d"
+checksum = "1b1ffbcf9c6f6b99d386e7444eb608ba646ae452a36b39737deb9663b610f662"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -3093,9 +3093,9 @@ dependencies = [
 
 [[package]]
 name = "tracing-core"
-version = "0.1.33"
+version = "0.1.34"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e672c95779cf947c5311f83787af4fa8fffd12fb27e4993211a84bdfd9610f9c"
+checksum = "b9d12581f227e93f094d3af2ae690a574abb8a2b9b7a96e7cfe9647b2b617678"
 dependencies = [
  "once_cell",
 ]

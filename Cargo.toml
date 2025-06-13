@@ -14,23 +14,23 @@ path = "src/oxc.rs"
 test    = false
 doctest = false
 
-[[bin]]
-name = "swc"
-path = "src/swc.rs"
-test    = false
-doctest = false
+# [[bin]]
+# name = "swc"
+# path = "src/swc.rs"
+# test    = false
+# doctest = false
 
 [dependencies]
 oxc = { version = "0.72.3", features = ["transformer", "codegen", "semantic"] }
 
-swc = "26.0.0"
-swc_common = "12.0.1"
-swc_ecma_ast = "12.0.0"
-swc_ecma_parser = { version = "15.0.0", features = ["typescript"] }
-swc_ecma_transforms = { version = "20.0.0", features = ["compat"] }
-swc_ecma_transforms_react = "18.0.0"
-swc_ecma_transforms_typescript = "18.0.0"
-swc_ecma_visit = "12.0.0"
+# swc = "26.0.0"
+# swc_common = "12.0.1"
+# swc_ecma_ast = "12.0.0"
+# swc_ecma_parser = { version = "15.0.0", features = ["typescript"] }
+# swc_ecma_transforms = { version = "20.0.0", features = ["compat"] }
+# swc_ecma_transforms_react = "18.0.0"
+# swc_ecma_transforms_typescript = "18.0.0"
+# swc_ecma_visit = "12.0.0"
 
 num_cpus = "1.16.0"
 criterion2  = { version = "3.0.0", default-features = false }

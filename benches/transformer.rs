@@ -55,18 +55,18 @@ impl TheBencher for OxcBencher {
     }
 }
 
-struct SwcBencher;
+// struct SwcBencher;
 
-impl TheBencher for SwcBencher {
-    type RunOutput = String;
-    type Options = ();
+// impl TheBencher for SwcBencher {
+// type RunOutput = String;
+// type Options = ();
 
-    const ID: &'static str = "swc";
+// const ID: &'static str = "swc";
 
-    fn run(path: &Path, source_text: &str, _option: &Self::Options) -> Self::RunOutput {
-        bench_transformer::swc::transform(path, source_text)
-    }
-}
+// fn run(path: &Path, source_text: &str, _option: &Self::Options) -> Self::RunOutput {
+// bench_transformer::swc::transform(path, source_text)
+// }
+// }
 
 fn transformer_benchmark(c: &mut Criterion) {
     let filenames = ["typescript.js", "cal.com.tsx"];
@@ -78,7 +78,7 @@ fn transformer_benchmark(c: &mut Criterion) {
         let options = oxc::transformer::TransformOptions::from_target("es2015").unwrap();
         OxcBencher::bench(&mut g, &path, &source, &options);
 
-        SwcBencher::bench(&mut g, &path, &source, &());
+        // SwcBencher::bench(&mut g, &path, &source, &());
         g.finish();
     }
 }

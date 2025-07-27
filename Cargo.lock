@@ -565,9 +565,9 @@ dependencies = [
 
 [[package]]
 name = "oxc-browserslist"
-version = "2.0.10"
+version = "2.0.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "20605046d78dbba8ed6c1c10b5ee21a83d265825943bce8bc40d17b4c48d5aca"
+checksum = "509ae58826553dbd720886b6a77e7bb2a953d28a52728a74cc1fe296d66fa9a2"
 dependencies = [
  "bincode",
  "nom",

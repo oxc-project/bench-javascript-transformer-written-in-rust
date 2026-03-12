@@ -9,8 +9,8 @@
  *   -f,--format <format>  Output format. 'md' or 'csv'. Default: 'md'
  *   -o,--output <path>    Output file path. Prints to stdout if not set.
  */
-import fs from 'node:fs'
-import { markdownTable }  from 'markdown-table'
+import fs from "node:fs";
+import { markdownTable } from "markdown-table";
 
 async function readData() {
   const data = {};
@@ -26,14 +26,16 @@ async function readData() {
 
       const measurements = await fs.promises.readdir(`${dir}/${group}/${bench}`);
       for (const measurement of measurements) {
-        const json = await import(`${dir}/${group}/${bench}/${measurement}/new/estimates.json`, { with: { type: "json" } });
+        const json = await import(`${dir}/${group}/${bench}/${measurement}/new/estimates.json`, {
+          with: { type: "json" },
+        });
         const duration_ms = json.default.mean.point_estimate / 1_000_000;
         data[group][bench][measurement] ||= { duration_ms };
       }
     }
   }
 
-  return data
+  return data;
 }
 /**
  * @param {string[]} argv
@@ -44,7 +46,7 @@ function parseArgs(argv) {
      * output format. Markdown or CSV.
      * @type {'markdown' | 'csv'}
      */
-    format: 'markdown',
+    format: "markdown",
     /**
      * Path to output file. `null` prints to stdout.
      * @type {string | null}
@@ -52,20 +54,19 @@ function parseArgs(argv) {
     output: null,
   };
 
-  for(let arg = argv.shift(); arg; arg = argv.shift()) {
-    switch(arg) {
-      case '-f':
-      case '--format': {
-
+  for (let arg = argv.shift(); arg; arg = argv.shift()) {
+    switch (arg) {
+      case "-f":
+      case "--format": {
         const format = argv.shift()?.trim()?.toLowerCase();
-        if (!format) throw new TypeError('--format flag requires an argument');
-        switch(format) {
-          case 'md':
-          case 'markdown':
-            opts.format = 'markdown';
+        if (!format) throw new TypeError("--format flag requires an argument");
+        switch (format) {
+          case "md":
+          case "markdown":
+            opts.format = "markdown";
             break;
-          case 'csv':
-            opts.format = 'csv';
+          case "csv":
+            opts.format = "csv";
             break;
           default:
             throw new TypeError(`Invalid format '${format}', expected 'md' or 'csv'`);
@@ -73,15 +74,15 @@ function parseArgs(argv) {
         break;
       }
 
-      case '-o':
-      case '--output': {
+      case "-o":
+      case "--output": {
         opts.output = argv.shift();
         break;
       }
 
       // in case someone runs `pnpm table -- --format csv`
-      case '--':
-        continue
+      case "--":
+        continue;
     }
   }
 
@@ -95,10 +96,10 @@ async function main(argv) {
   const rows = Object.keys(data[groups[0]][columns[0]]);
   const options = parseArgs(argv);
 
-  let out = '';
+  let out = "";
 
-  switch(options.format) {
-    case 'markdown': {
+  switch (options.format) {
+    case "markdown": {
       for (const group of groups) {
         out += `### ${group}\n`;
         const table = [["", ...columns]];
@@ -106,40 +107,41 @@ async function main(argv) {
           const column_numbers = columns.map((column) => data[group][column][row].duration_ms);
           const minimum = Math.min(...column_numbers);
           const column_values = column_numbers.map((number) => {
-            return `\`${number.toFixed(1)} ms\` (${(number / minimum).toFixed(2)}x)`
+            return `\`${number.toFixed(1)} ms\` (${(number / minimum).toFixed(2)}x)`;
           });
           table.push([row, ...column_values]);
         }
-        out += markdownTable(table) + '\n';
+        out += markdownTable(table) + "\n";
       }
-      break
+      break;
     }
 
-    case 'csv': {
-      const header = ['group', 'bench_name', 'tool', 'measurement', 'duration_ms'];
-      out += header.join(',') + '\n';
+    case "csv":
+      {
+        const header = ["group", "bench_name", "tool", "measurement", "duration_ms"];
+        out += header.join(",") + "\n";
 
-      for (const group of groups) {
-        // swc, oxc
-        for (const column of columns) {
-          const benches = data[group][column]
-          for (const bench in benches) {
-            const { duration_ms } = benches[bench];
-            out += `${group},${bench},${column},duration,${duration_ms}\n`;
+        for (const group of groups) {
+          // swc, oxc
+          for (const column of columns) {
+            const benches = data[group][column];
+            for (const bench in benches) {
+              const { duration_ms } = benches[bench];
+              out += `${group},${bench},${column},duration,${duration_ms}\n`;
+            }
           }
         }
       }
-    }
-    break;
+      break;
 
     default:
-      throw new TypeError(`Unexpected output format '${options.format}'`);
+      throw new TypeError(`Unexpected output format '${String(options.format)}'`);
   }
 
   if (!options.output) {
     console.log(out);
   } else {
-    await fs.promises.writeFile(options.output, out, 'utf8');
+    await fs.promises.writeFile(options.output, out, "utf8");
     console.log(`Saved table to ${options.output}`);
   }
 }

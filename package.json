@@ -2,10 +2,20 @@
   "name": "bench-javascript-transformer-written-in-rust",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "table": "node table.mjs"
+    "table": "node table.mjs",
+    "prepare": "vp config"
   },
   "devDependencies": {
-    "markdown-table": "^3.0.3"
+    "markdown-table": "^3.0.3",
+    "vite-plus": "latest"
+  },
+  "packageManager": "pnpm@10.32.1",
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+    }
   }
 }

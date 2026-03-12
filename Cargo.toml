@@ -11,7 +11,7 @@ harness = false
 [[bin]]
 name = "oxc"
 path = "src/oxc.rs"
-test    = false
+test = false
 doctest = false
 
 # [[bin]]
@@ -33,18 +33,18 @@ oxc = { version = "0.118.0", features = ["transformer", "codegen", "semantic"] }
 # swc_ecma_visit = "12.0.0"
 
 num_cpus = "1.16.0"
-criterion2  = { version = "3.0.0", default-features = false }
+criterion2 = { version = "3.0.0", default-features = false }
 rayon = "1.10.0"
-mimalloc= { package = "mimalloc-safe", version = "0.1.52" }
+mimalloc = { package = "mimalloc-safe", version = "0.1.52" }
 
 [features]
 codspeed = ["criterion2/codspeed"]
 
 [profile.release]
-opt-level     = 3
-lto           = "fat"
+opt-level = 3
+lto = "fat"
 codegen-units = 1
-strip         = "symbols"
-debug         = false
-panic         = "abort"
+strip = "symbols"
+debug = false
+panic = "abort"
 

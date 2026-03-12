@@ -22,12 +22,15 @@ Codspeed measures performance by cpu instructions.
 ### Target lowering to es2015
 
 ### cal.com.tsx
+
 |               | oxc               | swc               |
 | ------------- | ----------------- | ----------------- |
 | no-drop       | `11.3 ms` (1.00x) | `38.1 ms` (3.36x) |
 | parallel      | `20.6 ms` (1.00x) | `83.1 ms` (4.03x) |
 | single-thread | `11.3 ms` (1.00x) | `38.1 ms` (3.37x) |
+
 ### typescript.js
+
 |               | oxc                | swc                |
 | ------------- | ------------------ | ------------------ |
 | no-drop       | `80.6 ms` (1.00x)  | `337.9 ms` (4.19x) |
@@ -65,8 +68,8 @@ swc 148.5 mb
 
 ## Setup
 
-* Uses `mimalloc` as the global allocator
-* Uses the following release profile
+- Uses `mimalloc` as the global allocator
+- Uses the following release profile
 
 ```toml
 [profile.release]
@@ -117,4 +120,3 @@ group.bench_with_input(id, &source, |b, source| {
     })
 });
 ```
-

@@ -29,7 +29,7 @@ pub mod oxc {
             .into_scoping();
         let ret =
             Transformer::new(&allocator, path, options).build_with_scoping(scoping, &mut program);
-        assert!(ret.errors.is_empty());
+        assert!(ret.diagnostics.is_empty());
         let printed = Codegen::new().build(&program).code;
 
         (allocator, printed)

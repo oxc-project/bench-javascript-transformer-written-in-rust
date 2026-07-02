@@ -2,6 +2,7 @@
 name = "bench-transformer"
 version = "0.1.0"
 edition = "2024"
+license = "MIT"
 publish = false
 
 [[bench]]
@@ -21,7 +22,7 @@ doctest = false
 # doctest = false
 
 [dependencies]
-oxc = { version = "0.135.0", features = ["transformer", "codegen", "semantic"] }
+oxc = { version = "0.138.0", features = ["transformer", "codegen", "semantic"] }
 
 # swc = "26.0.0"
 # swc_common = "12.0.1"
@@ -47,4 +48,3 @@ codegen-units = 1
 strip = "symbols"
 debug = false
 panic = "abort"
-

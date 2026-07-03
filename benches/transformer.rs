@@ -22,9 +22,7 @@ trait TheBencher {
     ) {
         let cpus = num_cpus::get_physical();
         let id = BenchmarkId::new(Self::ID, "single-thread");
-        g.bench_with_input(id, &source, |b, source| {
-            b.iter(|| Self::run(path, source, options))
-        });
+        g.bench_with_input(id, &source, |b, source| b.iter(|| Self::run(path, source, options)));
 
         let id = BenchmarkId::new(Self::ID, "no-drop");
         g.bench_with_input(id, &source, |b, source| {

@@ -23,10 +23,7 @@ pub mod oxc {
         let source_type = SourceType::from_path(path).unwrap();
         let ret = Parser::new(&allocator, source_text, source_type).parse();
         let mut program = ret.program;
-        let scoping = SemanticBuilder::new()
-            .build(&program)
-            .semantic
-            .into_scoping();
+        let scoping = SemanticBuilder::new().build(&program).semantic.into_scoping();
         let ret =
             Transformer::new(&allocator, path, options).build_with_scoping(scoping, &mut program);
         assert!(ret.diagnostics.is_empty());
